@@ -44,7 +44,7 @@ public class BasePage {
 		prop= new Properties();
 		
 		try {
-			FileInputStream ip= new FileInputStream("./src/main/java/configProperties/Configdata.properties");
+			FileInputStream ip= new FileInputStream("C:\\Users\\Gopi\\eclipse-workspace\\POM_Sersis_Oct_2022\\src\\main\\java\\configProperties\\Configdata.properties");
 			prop.load(ip);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

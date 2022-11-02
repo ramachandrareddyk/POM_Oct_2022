@@ -1,5 +1,50 @@
 package utilities;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.sound.midi.InvalidMidiDataException;
+
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+
 public class ExcelUtilities {
+	public static final String TEST_DATA_SHEET="C:\\Users\\Gopi\\eclipse-workspace\\POM_Sersis_Oct_2022\\src\\main\\java\\testData\\TestData.xlsx";
+	
+	private static Workbook book;
+	private static Sheet sheet;
+	
+	public static Object[][] getTestData(String SheetName) {
+		
+		Object data[][]=null;
+		try {
+			FileInputStream ip= new FileInputStream(TEST_DATA_SHEET);
+			
+			book=WorkbookFactory.create(ip);
+			sheet= book.getSheet(SheetName);
+			
+			data = new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
+			
+			for(int i=0;i<sheet.getLastRowNum();i++) {
+				for(int j=0;j<sheet.getRow(0).getLastCellNum();j++) {
+					data[i][j]=sheet.getRow(i+1).getCell(j).toString();
+				}
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			
+		}catch (InvalidFormatException e) {
+			e.printStackTrace();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		return data;
+	}
+	
 
 }

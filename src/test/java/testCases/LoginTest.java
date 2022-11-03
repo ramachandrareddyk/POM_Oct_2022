@@ -29,6 +29,13 @@ public class LoginTest extends BaseTest{
 	
 	}
 	
+	public void verifyLoginWithInValidUsernameAndValidPasswordTest() throws InterruptedException {
+		home.navigateToLoginPage();
+		login.doLogin(prop.getProperty("inusername"), prop.getProperty("password"));
+	Assert.assertTrue(login.warningMessageIsDisplaying());
+	
+	}
+	
 	
 	
 }

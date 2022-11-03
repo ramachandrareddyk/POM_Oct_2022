@@ -1,15 +1,23 @@
 package utilities;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class JSUtilities {
 
+	
+	
 		WebDriver driver;
 		
 		public JSUtilities(WebDriver driver) {
 			this.driver= driver;
+		}
+		public WebElement getWebElement(By Locater) {
+			WebElement element= driver.findElement(Locater);
+			
+			return element;
 		}
 		public String getTitleByJS() {
 			JavascriptExecutor js=(JavascriptExecutor)driver;
@@ -27,9 +35,9 @@ public class JSUtilities {
 			js.executeScript("document.getElementById('"+id+"').value='"+value+"'");
 		}
 		
-		public void clickByJS(WebElement element) {
+		public void clickByJS(By Locater) {
 			JavascriptExecutor js=(JavascriptExecutor)driver;
-			js.executeScript("arguments[0].click()", element);
+			js.executeScript("arguments[0].click()", getWebElement(Locater));
 		}
 		
 		public void scrollDownPage() {

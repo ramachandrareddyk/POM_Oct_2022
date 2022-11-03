@@ -6,8 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import pages.AccountCreatedPage;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.RegisterPage;
 
 public class BaseTest {
 	
@@ -16,6 +18,9 @@ public class BaseTest {
 	public BasePage base;
 	public HomePage home;
 	public LoginPage login;
+	public RegisterPage register;
+	public AccountCreatedPage accountCreated;
+	
 	
 	@BeforeMethod
 	public void setUp() {
@@ -26,6 +31,8 @@ public class BaseTest {
 		driver=base.init_Browser(prop.getProperty("browser"));
 		home= new HomePage(driver);
 		login=new LoginPage(driver);
+		register= new RegisterPage(driver);
+		accountCreated= new AccountCreatedPage(driver);
 		driver.manage().window().maximize();
 		driver.get(prop.getProperty("url"));
 		
